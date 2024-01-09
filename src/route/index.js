@@ -139,4 +139,96 @@ router.post('/user-update', function (req, res) {
   // ↑↑ сюди вводимо JSON дані
 })
 // Підключаємо роутер до бек-енду
+
+
+// ======================================================
+
+class Product {
+  static #list = [];
+  constructor(name, price, description) {
+    this.name = name;
+    this.price = price;
+    this.description = description;
+    this.createDate = new Date().toISOString();
+    this.id = Math.floor(10000 + Math.random() * 9000)
+  }
+
+  static add = (product) => {
+    this.#list.push(product);
+  }
+
+  static getList = () => {
+    return this.#list;
+  }
+
+  static getById = (id) => {
+    this.#list.find((product) => product.id === id);
+  }
+
+  static updateById = (id, data) => {
+    const product = this.getById(id);
+    if (product) {
+      this.update(product, data)
+      return true;
+    } else return false;
+  }
+
+  static update = (product, { price, name, description }) => {
+    if (price) {
+      product.price = price;
+    }
+    else if (name) {
+      product.name = name;
+    }
+    else if (description) {
+      product.description = description;
+    }
+  }
+
+  static deleteById = (id) => {
+    const index = this.#list.findIndex((product) => product.id === id)
+    if (index !== -1) {
+      this.#list.splice(index, 1)
+      return true
+    } else return false;
+  }
+
+
+}
+
+
+
+
+
+router.get('/product-create', function (req, res) {
+  res.render('product-create', {
+    // вказуємо назву папки контейнера, в якій знаходяться наші стилі
+    style: 'product-create',
+
+  })
+  // ↑↑ сюди вводимо JSON дані
+})
+// ======================================================
+router.post('/product-created', function (req, res) {
+  // res.render генерує нам HTML сторінку
+  const { name, price, description } = req.body;
+  const product = new Product(name, price, description);
+
+
+  Product.add(product)
+
+  console.log(Product.getList())
+
+  res.render('alert', {
+    style: 'alert',
+    info: result ? 'Успішне виконання дії' : "Сталася помилка",
+    alert: result ? 'Товар успішно створено' : 'Товар не було додано',
+
+  })
+  // ↑↑ сюди вводимо JSON дані
+})
+
+// =======================================================
+
 module.exports = router
+
