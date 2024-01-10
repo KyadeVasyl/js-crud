@@ -1,3 +1,4 @@
+@use '../../lib/service.scss' as s;
 h1 {
 font-size: 18px;
 font-weight: 600;
@@ -16,7 +17,9 @@ a {
         display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: var(--radius-1);
+        border-radius: 4px;
+        text-decoration: none;
+        width: 250px;
 }
 
 .card {
@@ -26,6 +29,7 @@ a {
         border-radius: var(--border-radius);
         box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.15);
         padding: 18px;
+        margin: 36px;
 
 }
 

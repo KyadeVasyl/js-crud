@@ -48,6 +48,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 4px;
+  width: 400px;
 }
 .product__add_info {
   font-size: 12px;
@@ -55,12 +56,27 @@
 }
 .product__field_group {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
 }
 
 .input--big {
   height: 70px;
+}
+
+.red {
+  background-color: red;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+a {
+  text-decoration: none;
+  color: white;
 }
 
 /*# sourceMappingURL=style.css.map */

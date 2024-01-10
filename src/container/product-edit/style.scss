@@ -66,6 +66,7 @@
         align-items: center;
         justify-content: center;
         border-radius: 4px;
+        width: 400px;
     }
 
     &__add_info {
@@ -75,11 +76,26 @@
 
     &__field_group {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: s.space(2);
+        grid-template-columns:repeat(3, 1fr);
+        gap: s.space(3);
     }
 }
 
 .input--big {
     height: 70px;
+}
+
+.red {
+    background-color: red;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+a {
+    text-decoration: none;
+    color: s.color("whitee");
 }
